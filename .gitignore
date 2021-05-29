@@ -1,6 +1,6 @@
 
 arxiv-metadata-oai-snapshot.json
 .DS_Store
-data/all_df.csv
 data/model.sav
 .vscode/settings.json
+data/traindataset.csv
