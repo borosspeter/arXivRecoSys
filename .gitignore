@@ -4,3 +4,4 @@ arxiv-metadata-oai-snapshot.json
 data/model.sav
 .vscode/settings.json
 data/traindataset.csv
+data/manuscripts.db
