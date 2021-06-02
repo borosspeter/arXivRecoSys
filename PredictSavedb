@@ -17,7 +17,7 @@ def get_authors_FLast_arxivapi(authors):
         r.append(unidecode.unidecode(author[0][0]+author[-1]))    
     return ' '.join(r)
 
-def get_authors_FdotLast(authors):
+def get_authors_FdotLastcomma(authors):
     r = []
     for author in authors:
         authorv = author.split(' ')
@@ -37,7 +37,7 @@ nquery = 500
 startquery = 0
 lastquery = nquery
 latestdate = False
-df = pd.DataFrame(columns = ['id','published','authorsFull','authors', 'title', 'abstract'])
+predicted_df = pd.DataFrame(columns = ['id','published','authors_FdotLastcomma','authors_FLast', 'title', 'abstract'])
 
 while lastquery == nquery:
     feedparser = client._parse_feed(url='http://export.arxiv.org/api/query?search_query='+catstr+'&start='+str(startquery)+'&max_results='+str(nquery)+'&sortBy=submittedDate')
@@ -48,10 +48,10 @@ while lastquery == nquery:
         if not(latestdate): latestdate = datetime.strptime(entry.published[0:10],'%Y-%m-%d')
         if latestdate - datetime.strptime(entry.published[0:10],'%Y-%m-%d') < delta:
             lastquery+=1
-            df = df.append({
+            predicted_df = predicted_df.append({
                 'id' : entry.id,
-                'authorsFull' : get_authors_FdotLast([author['name'] for author in entry.authors]),
-                'authors' : get_authors_FLast_arxivapi([author['name'] for author in entry.authors]),
+                'authors_FdotLastcomma' : get_authors_FdotLastcomma([author['name'] for author in entry.authors]),
+                'authors_FLast' : get_authors_FLast_arxivapi([author['name'] for author in entry.authors]),
                 'title' : entry.title.rstrip(),
                 'abstract' : entry.summary.rstrip(),
                 'published': datetime.strptime(entry.published[0:10],'%Y-%m-%d')
@@ -59,16 +59,16 @@ while lastquery == nquery:
     startquery += nquery
     time.sleep(5)
 
-Xnew = df[['authors','title','abstract']]
+Xnew = predicted_df[['authors_FLast','title','abstract']]
 
-df['rating'] = [x[1] for x in pipeline.predict_proba(Xnew)]
+predicted_df['relevance'] = [x[1] for x in pipeline.predict_proba(Xnew)]
 
 conn = sqlite3.connect('data/manuscripts.db')
 c = conn.cursor()
 
-c.execute('CREATE TABLE IF NOT EXISTS manuscipts (id, published, authors, title, abstract, rating)')
+c.execute('CREATE TABLE IF NOT EXISTS manuscripts (id, published, authors, title, abstract, relevance)')
 conn.commit()
 
-dfs = df[['id','published','authorsFull','title','abstract','rating']]
+tosql_df = predicted_df[['id','published','authors_FdotLastcomma','title','abstract','relevance']]
 
-dfs.to_sql('manuscipts', conn, if_exists='replace', index = False)
+tosql_df.to_sql('manuscripts', conn, if_exists='replace', index = False)
