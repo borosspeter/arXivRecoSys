@@ -29,7 +29,7 @@ Functionality of `PredictSavedb.py` (standalone but requests `data/model.sav`):
 - Exporting results into SQL database
 
 ## Output
-Main output is `data/manuscripts.db` that is a SQL database with columns of `manuscripts` table:
+Main output is `data/manuscripts.db` which is a SQL database with table `manuscripts`, its columns are: 
 - `id` : Full arXiv link (**TEXT**)
 - `published` : Published date (**TIMESTAMP**)
 - `authors` : List of authors in the format `F1. (F2., ...) Last` with comma separation (**TEXT**)
