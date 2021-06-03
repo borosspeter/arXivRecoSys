@@ -37,5 +37,6 @@ Main output is `data/manuscripts.db` which is a SQL database with table `manuscr
 - `abstract` : Abstract (**TEXT**)
 - `relevance` : Predicted relevance of the manuscript between 0 (not relevant) and 1 (relevant) (**REAL**) 
 
-## Used packages
+## Used packages and web services
 - [Python wrapper for the arXiv](https://pypi.org/project/arxiv/)
+- [Prophy Science](https://www.prophy.science/)
