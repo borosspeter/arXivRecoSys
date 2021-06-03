@@ -23,5 +23,5 @@ Funcionality of `arXivRecoSys.ipynb`:
 - Predicting relevance of recent maunuscipts
 - Exporting results into SQL database
 
-## Used packages
+## Used packages
 - [Python wrapper for the arXiv](https://pypi.org/project/arxiv/)
