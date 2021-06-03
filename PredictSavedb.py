@@ -7,8 +7,6 @@ import arxiv
 import sqlite3
 import unidecode
 import pickle
-from sklearn.pipeline import Pipeline
-from sklearn.naive_bayes import MultinomialNB
 
 def get_authors_FLast_arxivapi(authors):
     r = []
@@ -47,7 +45,7 @@ while lastquery == nquery:
     for entry in feedparser.entries:
         if not(latestdate): latestdate = datetime.strptime(entry.published[0:10],'%Y-%m-%d')
         if latestdate - datetime.strptime(entry.published[0:10],'%Y-%m-%d') < delta:
-            lastquery+=1
+            lastquery += 1
             predicted_df = predicted_df.append({
                 'id' : entry.id,
                 'authors_FdotLastcomma' : get_authors_FdotLastcomma([author['name'] for author in entry.authors]),
