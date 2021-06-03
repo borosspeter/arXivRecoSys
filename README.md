@@ -29,13 +29,13 @@ Funcionality of `PredictSavedb.py` (standalone but requests `data/model.sav`) :
 - Exporting results into SQL database
 
 ## Output
-Main output is `data/manuscripts.db` that is a SQL database, columns of `manuscripts` table:
-- `id` : full arXiv link (TEXT)
-- `published` : published date (TIMESTAMP)
-- `authors` : list of authors in the format `F1. (F2., ...) Last` with comma separation (TEXT)
-- `title` : title (TEXT)
-- `abstract` : abstract (TEXT)
-- `relevance` :  relevance of the manuscript between 0 and 1 (REAL) 
+Main output is `data/manuscripts.db` that is a SQL database with columns of `manuscripts` table:
+- `id` : Full arXiv link (TEXT)
+- `published` : Published date (TIMESTAMP)
+- `authors` : List of authors in the format `F1. (F2., ...) Last` with comma separation (TEXT)
+- `title` : Title (TEXT)
+- `abstract` : Abstract (TEXT)
+- `relevance` : Predicted relevance of the manuscript between 0 (not relevant) and 1 (relevant) (REAL) 
 
 ## Used packages
 - [Python wrapper for the arXiv](https://pypi.org/project/arxiv/)
