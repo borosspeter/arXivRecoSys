@@ -67,6 +67,6 @@ c = conn.cursor()
 c.execute('CREATE TABLE IF NOT EXISTS manuscripts (id, published, authors, title, abstract, relevance)')
 conn.commit()
 
-tosql_df = predicted_df[['id','published','authors_FdotLastcomma','title','abstract','relevance']]
+tosql_df = predicted_df[['id','published','authors_FdotLastcomma','title','abstract','relevance']].rename(columns={"authors_FdotLastcomma": "authors"})
 
 tosql_df.to_sql('manuscripts', conn, if_exists='replace', index = False)

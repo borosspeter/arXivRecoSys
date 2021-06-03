@@ -20,12 +20,22 @@ Funcionality of `arXivRecoSys.ipynb`:
 - Training data preparation
 - Model training 
 - Making a query through arXiv API
-- Predicting relevance of recent manuscipts
+- Predicting relevance of recent manuscripts
 - Exporting results into SQL database
 
 Funcionality of `PredictSavedb.py` (standalone but requests `data/model.sav`) :
-- Predicting relevance of recent manuscipts
+- Making a query through arXiv API
+- Predicting relevance of recent manuscripts
 - Exporting results into SQL database
+
+## Output
+Main output is `data/manuscripts.db` that is a SQL database, columns of `manuscripts` table:
+- `id` : full arXiv link (TEXT)
+- `published` : published date (TIMESTAMP)
+- `authors` : list of authors in the format F1. (F2.) Last with comma separation (TEXT)
+- `title` : title (TEXT)
+- `abstract` : abstract (TEXT)
+- `relevance` :  relevance of the manuscript between 0 and 1 (REAL) 
 
 ## Used packages
 - [Python wrapper for the arXiv](https://pypi.org/project/arxiv/)
