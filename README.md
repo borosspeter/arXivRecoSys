@@ -16,14 +16,14 @@ Raw [Kaggle arXiv Dataset](https://www.kaggle.com/Cornell-University/arxiv) is u
 - `data/manuscripts.db` : SQL database contains recent manuscripts with predicted relevance (not synced by github)
 
 ## Usage
-Funcionality of `arXivRecoSys.ipynb` (cover all functionality of the project):
+Functionality of `arXivRecoSys.ipynb` (cover all functionality of the project):
 - Training data preparation
 - Model training 
 - Making a query through arXiv API
 - Predicting relevance of recent manuscripts
 - Exporting results into SQL database
 
-Funcionality of `PredictSavedb.py` (standalone but requests `data/model.sav`):
+Functionality of `PredictSavedb.py` (standalone but requests `data/model.sav`):
 - Making a query through arXiv API
 - Predicting relevance of recent manuscripts
 - Exporting results into SQL database
