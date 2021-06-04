@@ -29,7 +29,7 @@ Functionality of `PredictSave.py` (standalone but requests `data/model.sav`):
 - Predicting relevance of recent manuscripts
 - Exporting results into SQL database and/or exporting results into HTML
 
-## Outputs
+## Output files
 1. `data/manuscripts.db` which is a SQL database with table `manuscripts`, its columns are: 
 - `id` : Full arXiv link (**TEXT**)
 - `published` : Published date (**TIMESTAMP**)
