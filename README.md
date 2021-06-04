@@ -14,6 +14,7 @@ Raw [Kaggle arXiv Dataset](https://www.kaggle.com/Cornell-University/arxiv) is u
 - `data/traindataset.csv` : Training dataset processed from Kaggle arXiv dataset (not synced by github)
 - `data/model.sav` : Trained model for prediction (synced by github)
 - `data/manuscripts.db` : SQL database contains recent manuscripts with predicted relevance (not synced by github)
+- `data/manuscripts.html` : HTML page contains recent manuscripts with predicted relevance over 0.5 (synced by github)
 
 ## Usage
 Functionality of `arXivRecoSys.ipynb` (cover all functionality of the project):
@@ -23,19 +24,21 @@ Functionality of `arXivRecoSys.ipynb` (cover all functionality of the project):
 - Predicting relevance of recent manuscripts
 - Exporting results into SQL database
 
-Functionality of `PredictSavedb.py` (standalone but requests `data/model.sav`):
+Functionality of `PredictSave.py` (standalone but requests `data/model.sav`):
 - Making a query through arXiv API
 - Predicting relevance of recent manuscripts
-- Exporting results into SQL database
+- Exporting results into SQL database and/or exporting results into HTML
 
-## Output
-Main output is `data/manuscripts.db` which is a SQL database with table `manuscripts`, its columns are: 
+## Outputs
+1. `data/manuscripts.db` which is a SQL database with table `manuscripts`, its columns are: 
 - `id` : Full arXiv link (**TEXT**)
 - `published` : Published date (**TIMESTAMP**)
 - `authors` : List of authors in the format `F1. (F2., ...) Last` with comma separation (**TEXT**)
 - `title` : Title (**TEXT**)
 - `abstract` : Abstract (**TEXT**)
-- `relevance` : Predicted relevance of the manuscript between 0 (not relevant) and 1 (relevant) (**REAL**) 
+- `relevance` : Predicted relevance of the manuscript between 0 (not relevant) and 1 (relevant) (**REAL**)
+
+2. `data/manuscripts.db` which is a HTML page ready to embed it
 
 ## Used packages
 - [Python wrapper for the arXiv](https://pypi.org/project/arxiv/)
