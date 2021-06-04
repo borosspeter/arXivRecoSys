@@ -40,5 +40,6 @@ Functionality of `PredictSave.py` (standalone but requests `data/model.sav`):
 
 2. `data/manuscripts.db` which is a HTML page ready to embed it
 
-## Used packages
+## Used packages and web services
 - [Python wrapper for the arXiv](https://pypi.org/project/arxiv/)
+- [Prophy Science](https://www.prophy.science/)
