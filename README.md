@@ -30,7 +30,7 @@ Functionality of `PredictSave.py` (standalone but requests `data/model.sav`):
 - Exporting results into SQL database and/or exporting results into HTML
 
 ## Output files
-1. `data/manuscripts.db` which is a SQL database with table `manuscripts`, its columns are: 
+1. `data/manuscripts.db` is a SQL database with table `manuscripts`, its columns are: 
 - `id` : Full arXiv link (**TEXT**)
 - `published` : Published date (**TIMESTAMP**)
 - `authors` : List of authors in the format `F1. (F2., ...) Last` with comma separation (**TEXT**)
@@ -38,7 +38,7 @@ Functionality of `PredictSave.py` (standalone but requests `data/model.sav`):
 - `abstract` : Abstract (**TEXT**)
 - `relevance` : Predicted relevance of the manuscript between 0 (not relevant) and 1 (relevant) (**REAL**)
 
-2. `data/manuscripts.html` which is a HTML page ready to embed it
+2. `data/manuscripts.html` is a HTML page ready to embed it
 
 ## Used packages and web services
 - [Python wrapper for the arXiv](https://pypi.org/project/arxiv/)
