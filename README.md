@@ -38,7 +38,7 @@ Functionality of `PredictSave.py` (standalone but requests `data/model.sav`):
 - `abstract` : Abstract (**TEXT**)
 - `relevance` : Predicted relevance of the manuscript between 0 (not relevant) and 1 (relevant) (**REAL**)
 
-2. `data/manuscripts.html` is a HTML page ready to embed it
+2. `data/manuscripts.html` is a HTML page ready for embedding
 
 ## Used packages and web services
 - [Python wrapper for the arXiv](https://pypi.org/project/arxiv/)
