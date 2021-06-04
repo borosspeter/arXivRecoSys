@@ -22,12 +22,12 @@ Functionality of `arXivRecoSys.ipynb` (cover all functionality of the project):
 - Model training 
 - Making a query through arXiv API
 - Predicting relevance of recent manuscripts
-- Exporting results into SQL database
+- Exporting results into SQL database and/or exporting results into HTML page
 
 Functionality of `PredictSave.py` (standalone but requests `data/model.sav`):
 - Making a query through arXiv API
 - Predicting relevance of recent manuscripts
-- Exporting results into SQL database and/or exporting results into HTML
+- Exporting results into SQL database and/or exporting results into HTML page
 
 ## Output files
 1. `data/manuscripts.db` is a SQL database with table `manuscripts`, its columns are: 
