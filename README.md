@@ -9,7 +9,7 @@ Raw [Kaggle arXiv Dataset](https://www.kaggle.com/Cornell-University/arxiv) is u
 
 ## Files
 - `arXivRecoSys.ipynb` : ipython notebook for raw data preprocessing, model fitting and prediction (cover all functionality of the project)
-- `PredictSavedb.py` : python code for prediction and save prediction into SQL database (standalone but requests `data/model.sav`)
+- `PredictSavedb.py` : python code for prediction and save prediction into SQL database (standalone but requests `data/model.sav` and `data/template.html` to export into HTML)
 - `data/arxiv-metadata-oai-snapshot.json` : Kaggle arXiv Dataset (raw data, not synced by github) 
 - `data/traindataset.csv` : Training dataset processed from Kaggle arXiv dataset (not synced by github)
 - `data/model.sav` : Trained model for prediction (synced by github)

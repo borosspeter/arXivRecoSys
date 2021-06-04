@@ -35,12 +35,12 @@ def progress_bar(relevance):
 
 categories = {'cond-mat', 'cond-mat.mes-hall', 'quant-ph', 'cond-mat.supr-con', 'cond-mat.mtrl-sci', 'cond-mat.str-el', 'cond-mat.other'}
 
-output = ['html'] # 'html' and/or 'db'
+output = ['html', 'db'] # 'html' and/or 'db'
 
 filename = 'data/model.sav'
 pipeline = pickle.load(open(filename, 'rb'))
 
-days = 1
+days = 3
 delta = timedelta(days = days)
 catstr = '+OR+'.join(['cat:'+x for x in categories])
 client = arxiv.Client()
@@ -75,7 +75,6 @@ Xnew = predicted_df[['authors_FLast','title','abstract']]
 predicted_df['relevance'] = [x[1] for x in pipeline.predict_proba(Xnew)]
 
 if 'db' in output:
-
     tosql_df = predicted_df[['id','published','authors_FdotLastcomma','title','abstract','relevance']].rename(columns = {"authors_FdotLastcomma": "authors"})
 
     conn = sqlite3.connect('data/manuscripts.db')
@@ -86,7 +85,6 @@ if 'db' in output:
     tosql_df.to_sql('manuscripts', conn, if_exists = 'replace', index = False)
 
 if 'html' in output:
-
     tohtml_df = predicted_df[['id','published','authors_FdotLastcomma','title','abstract','relevance']].rename(columns = {"authors_FdotLastcomma": "authors"})
 
     day = False
@@ -94,27 +92,28 @@ if 'html' in output:
     html += '<hr>\n'
     for idx, row in tohtml_df[tohtml_df['relevance']>0.5].sort_values(by=['published','relevance'],ascending=False).iterrows():
         if day != row['published']:
-            html += '<b><font size="+2">'+row['published'].strftime('%-d %B, %Y')+'</font></b>\n'
+            html += '<div class="date">'+row['published'].strftime('%-d %B, %Y')+'</div>\n'
             html += '<hr>\n'
             day = row['published']
         html += '<li>\n'
-        html += '<a href="'+row['id']+'">arXiv:'+row['id'].split('http://arxiv.org/abs/')[-1][:-2]+'</a>'
-        html += '<br />\n'
-        html += '<b><font size="+1">Relevance:</b></font>'
-        html += '<font size="+0" style="font-family:courier, monospace">'+progress_bar(row['relevance'])+'</font>'
-        html += '<font size="+1">'+str(round(100*row['relevance'],1))+'%</font>'
-        html += '<br />\n'
-        html += '<b><font size="+1">Title:</b> '+row['title']+'</font>'
-        html += '<br />\n'
-        html += '<b><font size="+1">Authors:</font></b> <i>'+row['authors']+'</i>'
-        html += '<br />\n'
-        html += '<b><font size="+1">Abstract:</font></b> '+row['abstract']
-        #html += '<br />\n'
-        #html += '<b>Submitted:</b> '+row['published'].strftime('%-d %B, %Y')+'\n'
-        html += '<br />\n'
+        html += '<a href="'+row['id']+'">arXiv:'+row['id'].split('http://arxiv.org/abs/')[-1][:-2]+'</a>\n'
+        html += '<div class="relevance"><b>Relevance:</b>'
+        html += '<font style="font-family:courier, monospace">'+progress_bar(row['relevance'])+'</font>'
+        html += str(round(100*row['relevance'],1))+'%</div>\n'
+        html += '<div class="title"><b>Title:</b> '+row['title']+'</div>\n'
+        html += '<div class="authors_head"><b>Authors:</div></b> '
+        html += '<div class="authors"><i>'+row['authors']+'</i></div>\n'
+        html += '<div class="abstract_head"><b>Abstract:</b></div>\n'
+        html += '<div class="abstract">'+row['abstract']+'</div>\n'
+        html += '<br>\n'
         html += '</li>\n'
         html += '<hr>\n'
     html += '</ul>'
 
+    with open("data/template.html", "r") as file:
+        template = file.read()
+
+    html = template.replace("***", html)
+
     with open("data/manuscripts.html", "w") as file:
-        file.write(html)
+            file.write(html)
