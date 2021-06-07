@@ -24,7 +24,7 @@ Functionality of `arXivRecoSys.ipynb` (cover all functionality of the project):
 - Predicting relevance of recent manuscripts
 - Exporting results into SQL database and/or into HTML page
 
-Functionality of `PredictSave.py` (standalone but requests `data/model.sav`):
+Functionality of `PredictSave.py` (standalone but requests `data/model.sav` and `data/template.html` to export into HTML):
 - Making a query through arXiv API
 - Predicting relevance of recent manuscripts
 - Exporting results into SQL database and/or into HTML page
