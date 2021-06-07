@@ -30,17 +30,17 @@ def progress_bar(relevance):
         else:
             color = 'orange'
     else:
-        color = 'green'
+        color = 'yellow'
     return '|<font color="'+color+'">'+'█'*s+'</font>'+'-'*(20-s)+'|'
 
 categories = {'cond-mat', 'cond-mat.mes-hall', 'quant-ph', 'cond-mat.supr-con', 'cond-mat.mtrl-sci', 'cond-mat.str-el', 'cond-mat.other'}
 
-output = ['html', 'db'] # 'html' and/or 'db'
+output = ['html'] # 'html' and/or 'db'
 
 filename = 'data/model.sav'
 pipeline = pickle.load(open(filename, 'rb'))
 
-days = 3
+days = 7
 delta = timedelta(days = days)
 catstr = '+OR+'.join(['cat:'+x for x in categories])
 client = arxiv.Client()
