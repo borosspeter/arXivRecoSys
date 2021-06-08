@@ -38,7 +38,7 @@ categories = {'cond-mat', 'cond-mat.mes-hall', 'quant-ph', 'cond-mat.supr-con', 
 output = ['html'] # 'html' and/or 'db'
 
 filename = 'data/model.sav'
-pipeline = pickle.load(open(filename, 'rb'))
+classifier = pickle.load(open(filename, 'rb'))
 
 days = 7
 delta = timedelta(days = days)
@@ -72,7 +72,7 @@ while lastquery == nquery:
 
 Xnew = predicted_df[['authors_FLast','title','abstract']]
 
-predicted_df['relevance'] = [x[1] for x in pipeline.predict_proba(Xnew)]
+predicted_df['relevance'] = [x[1] for x in classifier.predict_proba(Xnew)]
 
 if 'db' in output:
     tosql_df = predicted_df[['id','published','authors_FdotLastcomma','title','abstract','relevance']].rename(columns = {"authors_FdotLastcomma": "authors"})
