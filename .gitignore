@@ -3,8 +3,6 @@
 .vscode/settings.json
 data/arxiv-metadata-oai-snapshot.json
 data/traindataset.csv
-data/traindataset_cited.csv
-data/traindataset_notcited.csv
 data/manuscripts.db
 data/manuscripts.html
 data/modelbig.sav
