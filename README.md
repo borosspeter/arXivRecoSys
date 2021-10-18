@@ -2,7 +2,7 @@
 Recommendation system for arXiv manuscripts
 
 ## About arXivRecoSys
-The main aim of project arXivRecoSys is to predict relevance of recent arXiv manuscripts for a research group. Prediction is based on arXiv manuscripts of the group and arXiv references of that manuscripts. Predicative model learns from authors lists, titles and abstracts.
+The main aim of project arXivRecoSys is to predict relevance of recent arXiv manuscripts relevant for a research group. Prediction is based on arXiv manuscripts of the group and arXiv references of that manuscripts. Predicative model learns from authors lists, titles and abstracts.
 
 ## Dataset
 Raw [Kaggle arXiv Dataset](https://www.kaggle.com/Cornell-University/arxiv) is used for model building. After downloading and unzipping the dataset, you can put it in the folder `data/`.
